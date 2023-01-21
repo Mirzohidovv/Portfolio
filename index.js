@@ -1,0 +1,66 @@
+window.addEventListener('DOMContentLoaded', function () {
+
+    const loader = document.querySelector('.loader_func');
+
+    setTimeout(() => {
+        loader.style.opacity = '0'
+
+        setTimeout(() => {
+            loader.style.display = 'none'
+        }, 500)
+    }, 4000)
+
+
+
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        header.classList.toggle('sticky', window.scrollY > 0)
+    })
+
+    const menuBtn = document.querySelector('.menu-btn');
+    const navigation = document.querySelector('.navigation');
+    const navigationItem = document.querySelectorAll('.navigation a')
+
+
+
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active')
+        navigation.classList.toggle('active')
+    })
+
+    navigationItem.forEach(navItem => {
+        navItem.addEventListener('click', function() {
+            menuBtn.classList.remove('active')
+            navigation.classList.remove('active')
+        })
+    })
+
+
+    const scrollBtn = document.querySelector('.scrollToTop-btn');
+    
+    window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('active', window.scrollY > 500)
+    })
+
+    scrollBtn.addEventListener('click', () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    })
+
+
+    window.addEventListener('scroll', () => {
+        let revels = document.querySelectorAll('.reveal');
+
+        for(let i = 0; i< revels.length; i++){
+            let windowHeight = window.innerHeight;
+            let revealTop = revels[i].getBoundingClientRect().top;
+            let revealPoint = 50;
+
+
+            if(revealTop < windowHeight - revealPoint){
+                revels[i].classList.add('active');
+            }
+        }
+    })
+})
+
